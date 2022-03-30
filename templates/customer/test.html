@@ -1,0 +1,55 @@
+
+@customer.route('/add_cart', methods=["GET", "POST"])
+
+def add_cart():
+   
+    if 'cart' not in session:
+        session['cart'] = []
+
+    session['cart'].append({'id': id, 'quantity': 1})
+    session.modified = True
+
+    return redirect(url_for('add_cart'))
+
+def handle_cart():
+        products = []
+        grand_total = 0
+        index = 0
+        quantity_total = 0
+
+        for item in session['cart']:
+            product = Menus.query.filter_by(id=item['id']).first()
+
+            quantity = int(item['quantity'])
+            total = quantity * product.price
+            grand_total += total
+
+            quantity_total += quantity
+
+            products.append({'id': product.id, 'name': product.name, 'price':  product.price,
+                             'quantity': quantity, 'total': total, 'index': index})
+            index += 1
+
+        grand_total_plus_shipping = grand_total + 1000
+
+        return products, grand_total, grand_total_plus_shipping, quantity_total
+
+
+def order_total(self):
+        return db.session.query(db.func.sum(Order_Item.quantity * Menus.price)).join(Menus).filter(Order_Item.order_id == self.id).scalar() + 1000
+
+def quantity_total(self):
+        return db.session.query(db.func.sum(Order_Item.quantity)).filter(Order_Item.order_id == self.id).scalar()
+        
+@customer.route('/cart')
+def cart():
+    products, grand_total, grand_total_plus_shipping, quantity_total = handle_cart()
+
+    return render_template('cart.html', products=products, grand_total=grand_total, grand_total_plus_shipping=grand_total_plus_shipping, quantity_total=quantity_total)
+
+
+@customer.route('/remove-from-cart')
+def remove_from_cart(index):
+    del session['cart'][int(index)]
+    session.modified = True
+    return redirect(url_for('cart'))

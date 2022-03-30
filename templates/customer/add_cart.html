@@ -1,0 +1,58 @@
+{% include "customer/common/header.html" %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0"> Welcome..#.</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">cart</li>
+          </ol>
+
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <form action="{{ url_for('add_to_cart') }}" method="POST">
+    {% if product.in_stock() > 0 %}
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="row">
+          <div class="col-lg-12">
+            Quantity
+          </div>
+          <div class="col-lg-12">
+            {{ form.csrf_token }}
+
+            {{ form.quantity(class='form-control' }}
+
+            {{ form.id(value=product.id) }}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  <div class="panel-footer">
+    {% if product.stock > 0 %}
+    <button type="submit" class="btn btn-primary">
+      <i class="glyphicon glyphicon-shopping-cart"></i> Add To Cart
+    </button>
+    {% endif %}
+  </div>
+  </form>
+
+
+
+
+<!-- Main content -->
+  
+  <!-- /.content -->
+</div>
+{% include "base.html" %}

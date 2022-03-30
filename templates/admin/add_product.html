@@ -1,0 +1,152 @@
+{% include "header.html" %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">ADD PRODUCTS</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">HOME</a></li>
+              <li class="breadcrumb-item active">ADD PRODUCTS</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!---Flask content goes here-->
+        <!---Notification Panel-->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+        <div class = "row">
+          <!-----Display alerts and notifications-->
+          <div class= "col-md-3"></div>
+          <div class= "col-md-6">
+              <div class="card card-success">
+                <div class="card-header">
+                  <h3 class="card-title">Notifications</h3>
+  
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                  <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+
+                  {% for mesg in messages %}
+                  
+                  <div class="alert alert-info alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="fas fa-check-circle"></i> Alert!</h5>
+                    {{ mesg }}
+                  </div>
+                  {% endfor %}
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+          </div>
+          <div class= "col-md-3"></div>
+        </div>
+        <!---End notification row-->
+        {% endif %}
+        
+        {% endwith %}
+
+
+        <!---Search bar content-->
+        
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form method="POST" action="/add_product" enctype="multipart/form-data">
+              {{ add_product.csrf_token }}
+              <div class="card-body">
+                {% if add_product.errors %}
+                {{ add_product.errors }}
+             {% endif %}
+                <div class="form-group">
+                  {{ add_product.product_id.label }}
+                  {{ add_product.product_id(class="form-control") }}
+                </div>
+                <div class="form-group">
+                  {{ add_product.name.label }}
+                  {{ add_product.name(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ add_product.category.label }}
+                    {{add_product.category(class="form-control")}}
+                  </div>
+                <div class="form-group">
+                    {{ add_product.price.label }}
+                    {{add_product.price(class="form-control")}}
+                  </div>
+                <div class="form-group">
+                  {{ add_product.quantity.label }} 
+                  {{add_product.quantity (class="form-control")}}
+                </div>
+                <div class="form-group">
+                  {{ add_product.status.label }} 
+                  {{add_product.status(class="form-control custom-select")}}
+                </div>
+               
+                <div class="form-group">
+                  {{ add_product.description.label }} 
+                  {{add_product.description(class="form-control pt-4" )}}
+                </div>
+                <div class="form-group">
+                  {{ add_product.file_photo }} 
+                 
+                </div>
+                
+              </div>
+                <!-- /.card-body -->
+              <div class="card-footer">
+                {{ add_product.save(class="btn btn-outline-success ml-1 mt-5") }}
+                
+              </div>
+              <div class="card-footer">
+                {{ add_product.delete(class="btn btn-outline-success ml-1 mt-5") }}
+              </div>
+            </div>
+            <!-- /.card-body -->
+         
+              
+
+          </form>
+
+
+              
+          </div>
+          <!--/.col (left) -->
+          
+        </div>
+        <!-- right -->
+        
+          <div class="col-md-2"></div>
+
+        </div>
+        <!--/.col (right) -->
+      </div>
+
+        <!---Flask content ends-->
+        
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  {% include "base.html" %}
+  

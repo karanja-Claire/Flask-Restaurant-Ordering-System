@@ -1,0 +1,50 @@
+{% include "header.html" %}
+
+    <!-- Main content -->
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">MENU LIST</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="dataTables_wrapper dt-bootstrap4" id="example2_wrapper"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table aria-describedby="example2_info" id="example2" class="table table-bordered table-hover dataTable dtr-inline">
+                <thead>
+                <tr><th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" colspan="1" rowspan="1" aria-controls="example2" tabindex="0" class="sorting sorting_asc">Name</th><th aria-label="Browser: activate to sort column ascending" colspan="1" rowspan="1" aria-controls="example2" tabindex="0" class="sorting">Price</th><th aria-label="Platform(s): activate to sort column ascending" colspan="1" rowspan="1" aria-controls="example2" tabindex="0" class="sorting">Quantity</th><th aria-label="Engine version: activate to sort column ascending" colspan="1" rowspan="1" aria-controls="example2" tabindex="0" class="sorting">Status</th><th aria-label="CSS grade: activate to sort column ascending" colspan="1" rowspan="1" aria-controls="example2" tabindex="0" class="sorting">Description</th></tr>
+                </thead>
+                <tbody>
+                {% for menu in menus %}
+                <tr class="odd">
+                  <td tabindex="0" class="dtr-control sorting_1">{{menu.name}}</td>
+                  <td>{{menu.price}}</td>
+                  <td>{{menu.quantity}}</td>
+                  <td>{{menu.status}}</td>
+                  <td>{{menu.description}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+                
+              </table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div aria-live="polite" role="status" id="example2_info" class="dataTables_info">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div id="example2_paginate" class="dataTables_paginate paging_simple_numbers"><ul class="pagination"><li id="example2_previous" class="paginate_button page-item previous disabled"><a class="page-link" tabindex="0" data-dt-idx="0" aria-controls="example2" href="#">Previous</a></li><li class="paginate_button page-item active"><a class="page-link" tabindex="0" data-dt-idx="1" aria-controls="example2" href="#">1</a></li><li class="paginate_button page-item "><a class="page-link" tabindex="0" data-dt-idx="2" aria-controls="example2" href="#">2</a></li><li class="paginate_button page-item "><a class="page-link" tabindex="0" data-dt-idx="3" aria-controls="example2" href="#">3</a></li><li class="paginate_button page-item "><a class="page-link" tabindex="0" data-dt-idx="4" aria-controls="example2" href="#">4</a></li><li class="paginate_button page-item "><a class="page-link" tabindex="0" data-dt-idx="5" aria-controls="example2" href="#">5</a></li><li class="paginate_button page-item "><a class="page-link" tabindex="0" data-dt-idx="6" aria-controls="example2" href="#">6</a></li><li id="example2_next" class="paginate_button page-item next"><a class="page-link" tabindex="0" data-dt-idx="7" aria-controls="example2" href="#">Next</a></li></ul></div></div></div></div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+          
+          <!-- /.card -->
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  </div></div></div>
+  {% include "base.html" %}
